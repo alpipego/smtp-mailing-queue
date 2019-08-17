@@ -7,14 +7,16 @@ class SMTPMailingQueueUpdate {
 	 */
 	protected $smtpMailingQueue;
 
-	/**
+    public function __construct($smtpMailingQueue)
+    {
+        $this->smtpMailingQueue = $smtpMailingQueue;
+    }
+
+    /**
 	 * Handles plugin updates if necessary.
 	 */
 	public function update() {
 		require_once ABSPATH . WPINC . '/class-phpmailer.php';
-
-		global $smtpMailingQueue;
-		$this->smtpMailingQueue = $smtpMailingQueue;
 
 		$installedVersion = get_option( "smq_version" );
 

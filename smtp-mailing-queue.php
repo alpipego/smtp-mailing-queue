@@ -37,10 +37,10 @@ if(is_admin() && version_compare(PHP_VERSION, '5.4', '<')) {
 	require_once('classes/SMTPMailingQueueTools.php');
 
 	$smtpMailingQueue = new SMTPMailingQueue(__FILE__);
-	$smtpMailingQueueUpdate = new SMTPMailingQueueUpdate(__FILE__);
-	new SMTPMailingQueueOptions();
-	new SMTPMailingQueueAdvancedOptions();
-	new SMTPMailingQueueTools();
+	$smtpMailingQueueUpdate = new SMTPMailingQueueUpdate($smtpMailingQueue);
+	new SMTPMailingQueueOptions($smtpMailingQueue);
+	new SMTPMailingQueueAdvancedOptions($smtpMailingQueue);
+	new SMTPMailingQueueTools($smtpMailingQueue);
 
 	// overwriting wp_mail() to store mailing data instead of sending immediately
 	if (!function_exists('wp_mail') && !isset($_GET['smqProcessQueue'])) {
